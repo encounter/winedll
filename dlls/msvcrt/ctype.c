@@ -21,6 +21,7 @@
 #include <locale.h>
 #include "msvcrt.h"
 #include "winnls.h"
+#include "debug.h"
 
 /* Some abbreviations to make the following table readable */
 #define _C_ _CONTROL

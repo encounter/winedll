@@ -957,7 +957,7 @@ void __thiscall ExternalContextBase_Unblock(ExternalContextBase *this)
 
     /* TODO: throw context_unblock_unbalanced if this->blocked goes below -1 */
     if (!InterlockedDecrement(&this->blocked))
-        RtlWakeAddressSingle(&this->blocked);
+        WakeByAddressSingle(&this->blocked);
 }
 
 DEFINE_THISCALL_WRAPPER(ExternalContextBase_IsSynchronouslyBlocked, 4)
@@ -977,7 +977,7 @@ void __thiscall ExternalContextBase_Block(ExternalContextBase *this)
     blocked = InterlockedIncrement(&this->blocked);
     while (blocked >= 1)
     {
-        RtlWaitOnAddress(&this->blocked, &blocked, sizeof(LONG), NULL);
+        WaitOnAddress(&this->blocked, &blocked, sizeof(LONG), INFINITE);
         blocked = this->blocked;
     }
 }

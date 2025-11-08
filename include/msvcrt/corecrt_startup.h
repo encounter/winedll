@@ -46,11 +46,11 @@ typedef int (__cdecl *_UserMathErrorFunctionPointer)(struct _exception *);
 extern "C" {
 #endif
 
-#ifndef _UCRT
+// #ifndef _UCRT
 _ACRTIMP void __cdecl __getmainargs(int *, char ***, char ***, int, int *);
 _ACRTIMP void __cdecl __wgetmainargs(int *, wchar_t ***, wchar_t ***, int, int *);
-#define _set_app_type __set_app_type
-#endif /* _UCRT */
+// #define _set_app_type __set_app_type
+// #endif /* _UCRT */
 
 _ACRTIMP void      __cdecl __setusermatherr(_UserMathErrorFunctionPointer);
 _ACRTIMP errno_t   __cdecl _configure_narrow_argv(_crt_argv_mode);
@@ -67,6 +67,7 @@ _ACRTIMP int       __cdecl _initialize_onexit_table(_onexit_table_t*);
 _ACRTIMP int       __cdecl _initialize_wide_environment(void);
 _ACRTIMP int       __cdecl _register_onexit_function(_onexit_table_t*,_onexit_t);
 _ACRTIMP void      __cdecl _set_app_type(_crt_app_type);
+_ACRTIMP void      __cdecl __set_app_type(_crt_app_type);
 
 #ifdef __cplusplus
 }

@@ -251,13 +251,11 @@ int CDECL _isnanf( float num )
 /*********************************************************************
  *      atanf (MSVCRT.@)
  */
-#if _MSVCR_VER == 0  /* other versions call atanf() directly */
 float CDECL MSVCRT_atanf( float x )
 {
     if (isnan(x)) return math_error(_DOMAIN, "atanf", x, 0, x);
     return atanf( x );
 }
-#endif
 
 #ifndef __i386__
 extern short CDECL _fdclass(float x);
@@ -457,7 +455,6 @@ double CDECL MSVCRT_sqrt( double x )
 /*********************************************************************
  *		tanh (MSVCRT.@)
  */
-#if _MSVCR_VER < 140  /* other versions call tanh() directly */
 double CDECL MSVCRT_tanh( double x )
 {
     if (isnan( x ))
@@ -467,7 +464,6 @@ double CDECL MSVCRT_tanh( double x )
     }
     return tanh( x );
 }
-#endif
 
 #ifdef __i386__
 

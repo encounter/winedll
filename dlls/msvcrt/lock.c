@@ -118,7 +118,6 @@ void CDECL _unlock( int locknum )
   LeaveCriticalSection( &(lock_table[ locknum ].crit) );
 }
 
-#if _MSVCR_VER == 110
 static LONG shared_ptr_lock;
 
 void __cdecl _Lock_shared_ptr_spin_lock(void)
@@ -137,7 +136,6 @@ void __cdecl _Unlock_shared_ptr_spin_lock(void)
 {
     shared_ptr_lock = 0;
 }
-#endif
 
 /**********************************************************************
  *     msvcrt_free_locks (internal)

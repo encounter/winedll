@@ -41,9 +41,7 @@
 
 WINE_DEFAULT_DEBUG_CHANNEL(seh);
 
-#if _MSVCR_VER>=70 && _MSVCR_VER<=71
 static MSVCRT_security_error_handler security_error_handler;
-#endif
 
 static __sighandler_t sighandlers[NSIG] = { SIG_DFL };
 
@@ -842,8 +840,6 @@ int __cdecl _fpieee_flt( __msvcrt_ulong code, EXCEPTION_POINTERS *ep,
     }
 }
 
-#if _MSVCR_VER>=70 && _MSVCR_VER<=71
-
 /*********************************************************************
  *		_set_security_error_handler (MSVCR70.@)
  */
@@ -870,8 +866,6 @@ void CDECL __security_error_handler(int code, void *data)
 
     _exit(3);
 }
-
-#endif /* _MSVCR_VER>=70 && _MSVCR_VER<=71 */
 
 #if _MSVCR_VER>=110
 /*********************************************************************

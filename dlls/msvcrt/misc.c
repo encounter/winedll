@@ -24,7 +24,7 @@
 #include "msvcrt.h"
 #include "wine/debug.h"
 #include "ntsecapi.h"
-// #include "windows.h"
+#include "winuser.h"
 #include "wine/asm.h"
 
 WINE_DEFAULT_DEBUG_CHANNEL(msvcrt);
@@ -413,8 +413,6 @@ int CDECL _resetstkoflw(void)
     return VirtualProtect(&stack_addr, 1, PAGE_GUARD|PAGE_READWRITE, &oldprot);
 }
 
-#if _MSVCR_VER>=80 && _MSVCR_VER<=90
-
 /*********************************************************************
  *  _decode_pointer (MSVCR80.@)
  */
@@ -431,9 +429,6 @@ void * CDECL _encode_pointer(void * ptr)
     return EncodePointer(ptr);
 }
 
-#endif /* _MSVCR_VER>=80 && _MSVCR_VER<=90 */
-
-#if _MSVCR_VER>=80 && _MSVCR_VER<=100
 /*********************************************************************
  *  _encoded_null (MSVCR80.@)
  */
@@ -443,7 +438,6 @@ void * CDECL _encoded_null(void)
 
     return EncodePointer(NULL);
 }
-#endif
 
 #if _MSVCR_VER>=70
 /*********************************************************************

@@ -5384,7 +5384,7 @@ int CDECL vfwprintf_s(FILE* file, const wchar_t *format, va_list valist)
 /*********************************************************************
  *              __stdio_common_vfprintf (UCRTBASE.@)
  */
-int CDECL _stdio_common_vfprintf(unsigned __int64 options, FILE *file, const char *format,
+int CDECL __stdio_common_vfprintf(unsigned __int64 options, FILE *file, const char *format,
                                         _locale_t locale, va_list valist)
 {
     if (options & ~UCRTBASE_PRINTF_MASK)

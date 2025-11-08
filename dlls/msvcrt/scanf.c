@@ -795,8 +795,6 @@ int WINAPIV _snwscanf_s_l(wchar_t *input, size_t length,
     return res;
 }
 
-#if _MSVCR_VER==120
-
 /*********************************************************************
  *		vsscanf (MSVCRT120.@)
  */
@@ -816,5 +814,3 @@ int CDECL vswscanf(const wchar_t *buffer, const wchar_t *format, va_list valist)
 
     return vswscanf_l(buffer, format, NULL, valist);
 }
-
-#endif /* _MSVCR_VER>=120 */
