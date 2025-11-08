@@ -96,7 +96,7 @@ add_library(msvcrt SHARED
     wcs.c
     stubs.c
     ${MSVCRT_GENERATED_STUBS}
-    # ../winecrt0/crt_dllmain.c
+    ../winecrt0/crt_dllmain.c
     ../winecrt0/setjmp.c
     ../winecrt0/exception.c
     ${MSVCRT_DEF}
@@ -145,34 +145,9 @@ target_link_libraries(msvcrt
         user32_import_lib
 )
 
-execute_process(
-    COMMAND ${CMAKE_C_COMPILER} -print-resource-dir
-    OUTPUT_VARIABLE CLANG_RESOURCE_DIR
-    OUTPUT_STRIP_TRAILING_WHITESPACE
-)
-
-if(CLANG_RESOURCE_DIR)
-    target_include_directories(msvcrt
+if (CMAKE_C_COMPILER_ID MATCHES "Clang")
+    target_link_libraries(msvcrt
         PRIVATE
-            ${CLANG_RESOURCE_DIR}/include
+            ${CMAKE_SOURCE_DIR}/vendor/libclang_rt.builtins-i386.a
     )
-    set(CLANG_BUILTINS_LIB "${CLANG_RESOURCE_DIR}/lib/linux/libclang_rt.builtins-i386.a")
-    if(EXISTS "${CLANG_BUILTINS_LIB}")
-        target_link_libraries(msvcrt PRIVATE "${CLANG_BUILTINS_LIB}")
-    endif()
-endif()
-
-set(_toolchain_target ${CMAKE_C_COMPILER_TARGET})
-if(NOT _toolchain_target)
-    set(_toolchain_target i686-pc-windows-gnu)
-endif()
-
-execute_process(
-    COMMAND ${CMAKE_C_COMPILER} --target=${_toolchain_target} -print-libgcc-file-name
-    OUTPUT_VARIABLE LIBGCC_PATH
-    OUTPUT_STRIP_TRAILING_WHITESPACE
-)
-
-if(LIBGCC_PATH AND EXISTS "${LIBGCC_PATH}")
-    target_link_libraries(msvcrt PRIVATE "${LIBGCC_PATH}")
 endif()

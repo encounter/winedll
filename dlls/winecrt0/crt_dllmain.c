@@ -25,6 +25,8 @@
 #include "windef.h"
 #include "winbase.h"
 
+extern BOOL WINAPI DllMain(HINSTANCE instance, DWORD reason, LPVOID reserved);
+
 BOOL WINAPI DllMainCRTStartup( HINSTANCE inst, DWORD reason, void *reserved )
 {
     return DllMain( inst, reason, reserved );

@@ -2077,11 +2077,11 @@
 @ cdecl _wexecvpe(wstr ptr ptr)
 @ cdecl _wfdopen(long wstr)
 @ cdecl _wfindfirst32(wstr ptr)
-@ cdecl _wfindfirst32i64(wstr ptr)
+@ stub _wfindfirst32i64
 @ cdecl _wfindfirst64(wstr ptr)
 @ cdecl _wfindfirst64i32(wstr ptr)
 @ cdecl _wfindnext32(long ptr)
-@ cdecl _wfindnext32i64(long ptr)
+@ stub _wfindnext32i64
 @ cdecl _wfindnext64(long ptr)
 @ cdecl _wfindnext64i32(long ptr)
 @ cdecl _wfopen(wstr wstr)
