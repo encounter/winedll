@@ -2,6 +2,17 @@
 
 This repository builds a standalone, universal version of Wine's msvcrt/ucrtbase using Clang.
 
+The final DLL is a drop-in replacement for all Microsoft Visual C++ runtime libraries:
+- msvcrt.dll
+- msvcr70.dll
+- msvcr80.dll
+- msvcr90.dll
+- msvcr100.dll
+- msvcr110.dll
+- msvcr120.dll
+- msvcr140.dll
+- ucrtbase.dll
+
 ## Building
 
 ```
