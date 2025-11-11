@@ -94,7 +94,6 @@ add_library(msvcrt SHARED
     time.c
     undname.c
     wcs.c
-    stubs.c
     ${MSVCRT_GENERATED_STUBS}
     ../winecrt0/crt_dllmain.c
     ../winecrt0/setjmp.c
@@ -142,6 +141,7 @@ target_link_libraries(msvcrt
         advapi32_import_lib
         kernel32_import_lib
         kernelbase_import_lib
+        ntdll_import_lib
         user32_import_lib
 )
 
